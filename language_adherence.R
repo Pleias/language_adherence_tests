@@ -1,6 +1,10 @@
 library(tidyverse)
+library(scales)
+library(vangogh)
 
-#This R code compute the results of the language continuation benchmark.
+current_palette = vangogh_palette("StarryNight", 7, "continuous")
+
+#This R code compute the results of the language adherence benchmark.
 
 #The benchmark includes:
 ##A text coming from one of the collection of Common Corpus. Overall we maintained a ponderated balance across various languages/sources to ensure enough diversity. The benchmark is focused on European languages but not limited to it.
@@ -33,13 +37,6 @@ benchmark_results = benchmark_results %>%
   ungroup()
 
 benchmark_results
-
-#We can visualize it with ggplot:
-#Preferably using an elegant stylesheet (vangogh)
-library(scales)
-library(vangogh)
-
-current_palette = vangogh_palette("StarryNight", 7, "continuous")
 
 benchmark_results %>%
   mutate(model = Hmisc::capitalize(gsub("_", "-", model))) %>%
